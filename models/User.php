@@ -2,12 +2,12 @@
 
 class User
 {
-    private int $id;
+    private ?int $id = null ;
     private string $email;
     private string $firstName;
     private string $lastName;
     
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -27,7 +27,7 @@ class User
         return $this->lastName;
     }
     
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
