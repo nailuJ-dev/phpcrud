@@ -4,24 +4,30 @@ class Router
 {
     public function handlerequest (array $get) : void
     {
+        $controller = new UserController();
+        
         if (isset($get['route']) && !empty($get['route']))
         {
             if ($get['route'] === 'show_user')
             {
-                // UserController->show()
+                $controller->show();
             } else if ($get["route"] === "create_user") {
-                // UserController->create()
+                $controller->create();
             } else if ($get["route"] === "check_create_user") {
-                // UserController->checkCreate()
+                $controller->checkCreate();
             } else if ($get["route"] === "update_user") {
-                // UserController->update()
+                $controller->update();
             } else if ($get["route"] === "check_update_user") {
-                // UserController->checkUpdate()
+                $controller->checkUpdate();
             } else if ($get["route"] === "delete_user") {
-                // UserController->delete()
+                $controller->delete();
+            } else
+            {
+                $controller->list();
+            }
         } else
         {
-            // UserController->list()
+            $controller->list();
         }
     }
 }
