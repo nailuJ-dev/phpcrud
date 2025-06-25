@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>Exercice CRUD MVC</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul>
+					<li>
+						<a href="index.php">Accueil</a>
+					</li>
+					<li>
+						<a href="index.php?route=show_user">Liste Utilisateurs</a>
+					</li>
+					<li>
+						<a href="index.php?route=create_user">Créer Utilisateur</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+		<?php
+    		if (isset($template))
+    		{
+    		    require $template;
+    		}
+    		// Display a specific template for each page which will be defined by the controller which get out a variable que s'apelerio Quezac... no no named $template
+		?>
+		</main>
+	</body>
+</html>
