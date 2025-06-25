@@ -1,2 +1,13 @@
 <h1>Créer nouvel utilisateur</h1>
-<p>Wilkommen or Hej !</p>
+<form action='index.php?route=check_create_user' method='POST'>
+    <label for="email">Email :</label>
+    <input type='email' id='email' name='email' required>
+    
+    <label for="first_name">Prénom :</label>
+    <input type='text' id='first_name' name='first_name' required>
+    
+    <label for="last_name">Email :</label>
+    <input type='text' id='last_name' name='last_name' required>
+    
+    <input type="submit" value="Créer l'utilisateur"/>
+</form>
