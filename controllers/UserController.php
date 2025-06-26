@@ -67,9 +67,9 @@ class UserController
     {
         if (!empty($_POST))
         {
-            $email = htmlspecialChars($_POST['email']);
-            $firstName = htmlspecialChars($_POST['first_name']);
-            $lastName = htmlspecialChars($_POST['last_name']);
+            $email = htmlspecialchars($_POST['email']);
+            $firstName = htmlspecialchars($_POST['first_name']);
+            $lastName = htmlspecialchars($_POST['last_name']);
             
             $newUser = new User();
             $newUser->setEmail($email);
