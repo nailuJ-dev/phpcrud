@@ -1,2 +1,9 @@
 <h1>Détail Utilisateur</h1>
 <p>We know everything about you everywhere, everytime, everywhy</p>
+<div>
+    <p><strong>Prénom :</strong> <?= htmlspecialchars($user->getFirstName()) ?></p>
+    <p><strong>Nom :</strong> <?= htmlspecialchars($user->getLastName()) ?></p>
+    <p><strong>Email :</strong> <?= htmlspecialchars($user->getEmail()) ?></p>
+</div>
+
+<a href="index.php">Retour à la liste</a>

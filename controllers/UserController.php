@@ -13,20 +13,54 @@ class UserController
     
     public function show(): void
     {
-        $template = 'templates/users/show.phtml';
-        require 'templates/layout.phtml';
+        if (isset($_GET['id'])) {
+            $userId = (int)$_GET['id'];
+            $userManager = new userManager();
+            $user = $userManager->findOne($userId);
+            
+            if ($user)
+            {
+                $template = 'templates/users/show.phtml';
+                require 'templates/layout.phtml'; 
+            } else
+            {
+                header('Location: index.php');
+                exit();
+            }
+        } else
+        {
+            header('Location: index.php');
+            exit();
+        }
     }
     
     public function create(): void
     {
-        $template = 'templates/users/create.phtml';
-        require 'templates/layout.phtml';
+        $template = "templates/users/create.phtml";
+        require "templates/layout.phtml";
     }
     
     public function update(): void
     {
-        $template = 'templates/users/update.phtml';
-        require 'templates/layout.phtml';
+        if (isset($_GET['id'])) {
+            $userId = (int)$_GET['id'];
+            $userManager = new userManager();
+            $user = $userManager->findOne($userId);
+            
+            if ($user)
+            {
+                $template = 'templates/users/update.phtml';
+                require 'templates/layout.phtml'; 
+            } else
+            {
+                header('Location: index.php');
+                exit();
+            }
+        } else
+        {
+            header('Location: index.php');
+            exit();
+        }
     }
     
     public function checkCreate(): void
@@ -52,17 +86,44 @@ class UserController
     
     public function checkUpdate(): void
     {
-        // To be determined later, waiting for the specific logic
-        // Our own logic or a determined logic gives in the next steps
-        // Display a message after checking datas next to creating with id perhaps 
+        if (!empty($_POST))
+        {
+            if (isset($_POST['id'], $_POST['email'], $_POST['first_name'], $_POST['last_name']))
+            {
+                $id = (int)$_POST['id'];
+                $email = htmlspecialchars($_POST['email']);
+                $firstName = htmlspecialchars($_POST['first_name']);
+                $lastName = htmlspecialchars($_POST['last_name']);
+                
+                $userToUpdate = new User();
+                $userToUpdate->setId($id);
+                $userToUpdate->setEmail($email);
+                $userToUpdate->setFirstName($firstName);
+                $userToUpdate->setLastName($lastName);
+                
+                $userManager = new UserManager();
+                $userManager->update($userToUpdate);
+            }
+        }
+        header('Location: index.php');
+        exit();
     }
     
     public function delete(): void
     {
-        // To be determined later, waiting for the specific logic
-        // Our own logic or a determined logic gives in the next steps
-        // Display a message after deleting datas with id perhaps
-        // Why this fuc***' function name is blue and not the others... to be searched for explain
+        if (isset($_GET['id'])) {
+            $userId = (int)$_GET['id'];
+            $userManager = new userManager();
+            $user = $userManager->findOne($userId);
+            
+            if ($user)
+            {
+                $userManager->delete($userId); 
+            }
+        }
+        
+        header('Location: index.php');
+        exit();
     }
 }
 
