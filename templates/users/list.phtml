@@ -1,8 +1,59 @@
 <h1>Liste Utilisateurs</h1>
 <p>Now you are in it sorry</p>
 
-<ul>
-    <li><a href='index.php?route=show_user&id=1'>Voir user 1</a></li>
-    <li><a href='index.php?route=update_user&id=1'>Modif user 1</a></li>
-    <li><a href='index.php?route=delete_user&id=1'>Supprimer user 1</a></li>
-</ul>
+
+
+<?php
+    if (!empty($users)):
+?>
+
+    <style>
+        .user-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .user-table th, .user-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .user-table thead { background-color: #f2f2f2; }
+    </style>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Prénom
+                </th>
+                <th>
+                    Nom
+                </th>
+                <th>
+                    Email
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                foreach ($users as $user):
+            ?>
+            <tr>
+                <td><?= htmlspecialchars($user->getId()) ?></td>
+                <td><?= htmlspecialchars($user->getFirstName()) ?></td>
+                <td><?= htmlspecialchars($user->getLastName()) ?></td>
+                <td><?= htmlspecialchars($user->getEmail()) ?></td>
+                <td>
+                    <a href='index.php?route=show_user&id=<?= $user->getId() ?>'>Voir</a>
+                    <a href='index.php?route=update_user&id=<?= $user->getId() ?>'>Modifier</a>
+                </td>
+            </tr>
+            <?php
+                endforeach;
+            ?>
+        </tbody>
+    </table>
+    
+<?php
+    else:
+?>
+    <p>Aucun utilisateur trouvé dans la bdd</p>
+<?php
+    endif;
+?>

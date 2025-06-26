@@ -4,6 +4,9 @@ class UserController
 {
     public function list(): void
     {
+        $userManager = new userManager();
+        $users = $userManager->findAll();
+        
         $template = 'templates/users/list.phtml';
         require 'templates/layout.phtml';
     }
